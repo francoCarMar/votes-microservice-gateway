@@ -26,7 +26,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(http -> {
                     http.requestMatchers("/keycloak/user/create", "/realms/auth").permitAll();
-                    http.requestMatchers("/keycloak/user/create-users").hasRole("admin_client_role");
+                    http.requestMatchers("/keycloak/user/create-users", "/mail/**", "/votes/**").hasRole("admin_client_role");
                     http.anyRequest().authenticated();
                 })
                 .oauth2ResourceServer(oauth -> {
